@@ -1,0 +1,27 @@
+<%- include('./partials/header.ejs')%>
+<div class="nav">
+  <h1 class="logo">My To Do List</h1>
+</div>
+
+<form action="/" method="post" class="input-area">
+
+  <input name="note" class="input" type="text" placeholder="New Note..." />
+
+  <button type="submit" class="button-add">
+    <img class="add" src="images/plus.png" alt="sub" />
+  </button>
+  
+</form>
+
+<% data.forEach((item)=>{ %>
+    <div class="note <% if(item.color == 0){ %> red <% } else if(item.color == 1){%> green <%} else if(item.color == 2){%> pink <%} else if(item.color == 3){%> yellow <%} else{%> blue <%} %>">
+        <%= item.note %>
+        <form action="/delete/<%= item._id%>" method="post">
+        <button type="submit" class="button-done">
+            <img class="delete" src="images/trash.png" alt="" />
+        </button>
+      </form>
+    </div>
+<% })%>
+
+<%- include('./partials/footer.ejs')%>
